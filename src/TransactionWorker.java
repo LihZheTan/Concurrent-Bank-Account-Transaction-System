@@ -12,10 +12,12 @@ public class TransactionWorker implements Runnable {
     @Override
     public void run() {
         String amountText = transaction.getAmount() > 0 ? " RM" + transaction.getAmount() : "";
-        System.out.println("Starting Transaction " + transactionId + ": " + transaction.getType() + amountText);
+        System.out.println(Thread.currentThread().getName() + " started " + transaction.getType() + amountText);
 
         try {
-            Thread.sleep(500);
+            //Randomly assign Thread.sleep() timings
+            int randomProcessingTime = (int) (Math.random() * 900) + 100;
+            Thread.sleep(randomProcessingTime);
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
         }
@@ -34,7 +36,7 @@ public class TransactionWorker implements Runnable {
                 break;
         }
 
-        System.out.println("Finished Transaction " + transactionId);
-        System.out.println("Current Balance: RM" + account.getBalance() + "\n");
+        System.out.println("\n" + Thread.currentThread().getName() + " finished " + transaction.getType() + amountText);
+        System.out.println("Current Balance: RM" + account.getBalance());
     }
 }

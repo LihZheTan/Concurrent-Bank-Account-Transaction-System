@@ -5,7 +5,28 @@ public class BankTransactionSystem {
     }
 
     private static void runConcurrentProcessing() throws InterruptedException {
-        //code here
+        //Creates a BankAccount object to be used in the function with 1000 initial credits
+        BankAccount sharedAccount = new BankAccount(1000.0);
+
+        //Creates an array to store each thread later on
+        Thread[] threads = new Thread[transactions.length];
+
+        // Loops through the transactions. Creates a worker and a thread for each transaction
+        for (int i = 0; i < transactions.length; i++) {
+            // Creates a few runnable for each transaction
+            TransactionWorker worker = new TransactionWorker(sharedAccount, transactions[i], i + 1);
+
+            // Creates a new thread with its runnable and assigns its appropriate name starting from 1
+            threads[i] = new Thread(worker, "Thread-" + (i + 1));
+
+            // Starts each thread into its runnable state
+            threads[i].start();
+        }
+
+        //Join threads once they are done
+        for (Thread t : threads) {
+            t.join();
+        }
     }
 
     private static void runRaceConditionUnsafe() throws InterruptedException {
@@ -17,7 +38,7 @@ public class BankTransactionSystem {
     }
 
     //8 Transactions to be used assigned to an array
-    Transaction[] transactions = {
+    static Transaction[] transactions = {
             new Transaction("Deposit", 10.00),
             new Transaction("Withdraw", 110.00),
             new Transaction("Service Charge", 1.00),
