@@ -1,10 +1,10 @@
 public class BankTransactionSystem {
     //Class Methods
-    private static void runSequential() {
+    private static void runSequentialProcessing() {
         //code here
     }
 
-    private static void runConcurrentBasic() throws InterruptedException {
+    private static void runConcurrentProcessing() throws InterruptedException {
         //code here
     }
 
@@ -36,12 +36,12 @@ public class BankTransactionSystem {
 
         // Task 2: Sequential Processing
         System.out.println("\nStarting Task 2: SEQUENTIAL PROCESSING");
-        runSequential();
+        runSequentialProcessing();
         Thread.sleep(1000);
 
         // Task 3: Concurrent Processing
         System.out.println("\nStarting Task 3: CONCURRENT PROCESSING");
-        runConcurrentBasic();
+        runConcurrentProcessing();
         Thread.sleep(1000);
 
         // Task 5: Race Condition Demonstration
