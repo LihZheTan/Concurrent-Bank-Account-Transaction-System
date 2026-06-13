@@ -1,7 +1,49 @@
 public class BankTransactionSystem {
     //Class Methods
     private static void runSequentialProcessing() {
-        //code here
+
+        BankAccount sequentialAccount = new BankAccount(1000.0);
+
+        for (int i = 0; i < transactions.length; i++) {
+
+            // Current Transaction object from List
+            Transaction currentTx = transactions[i];
+            int transactionNumber = i + 1;
+
+            // Format the amount for printing
+            String amountText = currentTx.getAmount() > 0 ? " RM" + currentTx.getAmount() : "";
+
+            System.out.println("Starting Transaction " + transactionNumber + ": " + currentTx.getAmount());
+
+            // Simulate processing time
+            try {
+                Thread.sleep(500);
+            }catch (InterruptedException e) {
+                System.out.println(e.getMessage());
+            }
+
+            // Look at transaction list and apply the correct amount
+            switch (currentTx.getType()) {
+                case "Deposit":
+                    sequentialAccount.deposit(currentTx.getAmount());
+                    break;
+
+                case "Withdraw":
+                    sequentialAccount.withdraw(currentTx.getAmount());
+                    break;
+
+                case "Service Charge":
+                    sequentialAccount.applyServiceCharge(currentTx.getAmount());
+                    break;
+
+                case "Balance Check":
+                    break;
+            }
+
+            // Display output completion and print new balance
+            System.out.println("Finished Transaction " + transactionNumber);
+            System.out.println("Current Balance: RM " + sequentialAccount.getBalance() + "\n");
+        }
     }
 
     private static void runConcurrentProcessing() throws InterruptedException {
