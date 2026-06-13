@@ -1,5 +1,5 @@
 public class Transaction {
-    private String type; // e.g., "DEPOSIT", "WITHDRAW"
+    private String type; // e.g., "Deposit", "Withdraw"
     private double amount;
 
     public Transaction(String type, double amount) {
@@ -7,5 +7,11 @@ public class Transaction {
         this.amount = amount;
     }
 
-    // Getters for type and amount
+    public String getType() {
+        return type;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
 }

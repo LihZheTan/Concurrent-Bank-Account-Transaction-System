@@ -5,9 +5,19 @@ public class BankAccount {
         this.balance = initialBalance;
     }
 
-    public void deposit(double amount)
+    public void deposit(double amount){
+        balance += amount;
+    }
 
-    public void withdraw(double amount)
+    public void withdraw(double amount) {
+        balance -= amount;
+    }
 
-    public double getBalance()
+    public void applyServiceCharge(double amount) {
+        balance -= amount;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
 }
