@@ -1,5 +1,5 @@
 # Concurrent-Bank-Account-Transaction-System
-Group project for concurrent programming assignment by Sohom Chakma, Raymond Tham Chun Keet, and Tan Lih Zhe
+Group project for Group 8's CSC2044 concurrent programming assignment by Sohom Chakma, Raymond Tham Chun Keet, and Tan Lih Zhe
 
 1. Open the project folder.
 2. Compile the Java file:
