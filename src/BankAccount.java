@@ -20,4 +20,8 @@ public class BankAccount {
     public double getBalance() {
         return balance;
     }
+
+    public synchronized void safeDeposit(double amount){
+        balance += amount;
+    }
 }
