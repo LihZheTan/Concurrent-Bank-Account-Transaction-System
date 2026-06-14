@@ -13,7 +13,7 @@ public class BankTransactionSystem {
             // Format the amount for printing
             String amountText = currentTx.getAmount() > 0 ? " RM" + currentTx.getAmount() : "";
 
-            System.out.println("Starting Transaction " + transactionNumber + ": " + currentTx.getAmount());
+            System.out.println("Starting Transaction " + transactionNumber + ": " + currentTx.getType() + amountText);
 
             // Simulate processing time
             try {
