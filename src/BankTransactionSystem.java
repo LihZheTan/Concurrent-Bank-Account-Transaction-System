@@ -72,11 +72,71 @@ public class BankTransactionSystem {
     }
 
     private static void runRaceConditionUnsafe() throws InterruptedException {
-        //code here
+        //Create BankAccount objects for shared transactions and initial balance.
+        BankAccount sharedAccount = new BankAccount(1000.0);
+        BankAccount initialBalance = new BankAccount(1000.0);
+
+        //Variable for the number for times incremented.
+        int counts = 100000;
+
+        //Create two threads
+        Thread t1 = new Thread( () -> {
+           for ( int i = 0; i < 100000; i++ ) {
+               sharedAccount.deposit( 1 );
+           }
+        });
+
+        Thread t2 = new Thread(() -> {
+            for ( int i = 0; i < 100000; i++ ) {
+                sharedAccount.deposit( 1 );
+            }
+        });
+
+        //Start each thread concurrently
+        t1.start();
+        t2.start();
+
+        //Join threads once complete
+        t1.join();
+        t2.join();
+
+        //Print output comparing expected to actual balance
+        System.out.println( "Expected Balance = " + (initialBalance.getBalance() + 100000 * 2 ) );
+        System.out.println( "Actual Balance: " + sharedAccount.getBalance());
     }
 
     private static void runSynchronizationSafe() throws InterruptedException {
-        //code here
+        //Create BankAccount objects for shared transactions and initial balance.
+        BankAccount sharedAccount = new BankAccount(1000.0);
+        BankAccount initialBalance = new BankAccount(1000.0);
+
+        //Variable for the number for times incremented.
+        int counts = 100000;
+
+        //Create two threads
+        Thread t1 = new Thread(() -> {
+            for (int i = 0; i < counts; i++) {
+                sharedAccount.safeDeposit(1);
+            }
+        });
+
+        Thread t2 = new Thread(() -> {
+            for (int i = 0; i < counts; i++) {
+                sharedAccount.safeDeposit(1);
+            }
+        });
+
+        //Start each thread concurrently
+        t1.start();
+        t2.start();
+
+        //Join threads once complete
+        t1.join();
+        t2.join();
+
+        //Print output comparing expected to actual balance
+        System.out.println( "Expected Balance = " + ( initialBalance.getBalance() + counts * 2 ) );
+        System.out.println( "Actual Balance: " + sharedAccount.getBalance() );
     }
 
     //8 Transactions to be used assigned to an array
