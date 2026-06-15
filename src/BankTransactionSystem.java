@@ -7,13 +7,13 @@ public class BankTransactionSystem {
         for (int i = 0; i < transactions.length; i++) {
 
             // Current Transaction object from List
-            Transaction currentTx = transactions[i];
+            Transaction currentTransaction = transactions[i];
             int transactionNumber = i + 1;
 
             // Format the amount for printing
-            String amountText = currentTx.getAmount() > 0 ? " RM" + currentTx.getAmount() : "";
+            String amountText = currentTransaction.getAmount() > 0 ? " RM" + currentTransaction.getAmount() : "";
 
-            System.out.println("Starting Transaction " + transactionNumber + ": " + currentTx.getType() + amountText);
+            System.out.println("Starting Transaction " + transactionNumber + ": " + currentTransaction.getType() + amountText);
 
             // Simulate processing time
             try {
@@ -23,17 +23,17 @@ public class BankTransactionSystem {
             }
 
             // Look at transaction list and apply the correct amount
-            switch (currentTx.getType()) {
+            switch (currentTransaction.getType()) {
                 case "Deposit":
-                    sequentialAccount.deposit(currentTx.getAmount());
+                    sequentialAccount.deposit(currentTransaction.getAmount());
                     break;
 
                 case "Withdraw":
-                    sequentialAccount.withdraw(currentTx.getAmount());
+                    sequentialAccount.withdraw(currentTransaction.getAmount());
                     break;
 
                 case "Service Charge":
-                    sequentialAccount.applyServiceCharge(currentTx.getAmount());
+                    sequentialAccount.applyServiceCharge(currentTransaction.getAmount());
                     break;
 
                 case "Balance Check":
