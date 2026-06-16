@@ -158,12 +158,12 @@ public class BankTransactionSystem {
         System.out.println("======================================================\n");
 
         // Task 2: Sequential Processing
-        System.out.println("\nStarting Task 2: SEQUENTIAL PROCESSING");
+        System.out.println("\nStarting Task: SEQUENTIAL PROCESSING");
         runSequentialProcessing();
         Thread.sleep(1000);
 
         // Task 3: Concurrent Processing
-        System.out.println("\nStarting Task 3: CONCURRENT PROCESSING");
+        System.out.println("\nStarting Task: CONCURRENT PROCESSING");
         runConcurrentProcessing();
         Thread.sleep(1000);
 
